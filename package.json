@@ -1,0 +1,25 @@
+{
+  "name": "ledger-btc-signing-example",
+  "version": "1.0.0",
+  "description": "example signing btc tx with ledger nano s",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/destrys/ledger-btc-signing-example.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/destrys/ledger-btc-signing-example/issues"
+  },
+  "homepage": "https://github.com/destrys/ledger-btc-signing-example#readme",
+  "dependencies": {
+    "@ledgerhq/hw-app-btc": "^4.24.0",
+    "@ledgerhq/hw-transport-node-hid": "^4.24.0",
+    "bitcoinjs-lib": "^3.2.0",
+    "babel-polyfill": "^6.26.0"
+  }
+}
