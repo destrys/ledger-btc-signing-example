@@ -36,29 +36,17 @@ async function signOneTx(bip32_path, unsignedSerializedTx, pubKeys, refTxs, inpu
     let ledgerbtc = await new AppBtc(transport);
 
    
-    //unsignedSerializedTx = ""
-
     // OUTPUT    
     let outputTx = await ledgerbtc.splitTransaction(unsignedSerializedTx);
     let outputScriptHex = await ledgerbtc.serializeTransactionOutputs(outputTx).toString('hex');
 
     // REDEEM SCRIPT
-    //let m = instructions.inputs[0].multisig.m;
     let m = 2
-    //let pubKeys = instructions.inputs[0].multisig.pubkeys;
-    //let pubKeys = ["",
-    //               "",
-    //               ""]
     let pubKeysBin = pubKeys.map((pubKey) => Buffer.from(pubKey, 'hex'));
     let redeemScriptHex = bitcoinjs.script.multisig.output.encode(m, pubKeysBin).toString('hex');
-    // we could pull these from the ledger and verify the address is correct if we want.
 
 
     // INPUTS
-
-    //let refTxs = ["0200000000010244c1f25815d3b8f7ae6ac76bfa66a794aa7d7390ea28d831620d2067683c82b50000000017160014849eac0f4d228da64b1b1798a6ead189e69b6cbbfeffffff5581de5ad0d11cd8a286d8cd44a4b5ab16c80f0b6466584036f002534fcc91b401000000171600146928f901ca53dd70e86a47c3d4058b18a768e8adfeffffff028d291b000000000017a914f1f08bbb94da765d888c2f514a6594dd8d7e45f78740420f000000000017a9145a5950d85504bff79a3c93aaf3e3c911848487d08702473044022059d791eca42e57381c7cc9d5907f8d1cf36aa4ddb6711f428fec8d0eb633d9d4022042ae5ee63be399008de6adcbb22e192547f99f28cf91fd67e28aaab8551a51930121026994ae6e1628cb370692b9cc84dcc8daab8075e8cc5332031547264591ab73e70248304502210088470c8a86dc2a5bfcd1a9ae02a515fbc566ab80b26691474bbd70c712f6017402207157d76a9464d104906adb71ab0defd746a33d5fd13afb55e57406db1d967b97012102797ff29ea8c33a4a38a2f231f48c64022d013d8eb267a08b6f63866cc0eeae354df71500"]
-    //let inputIndices = [1]
-
     let ledgerInputs = []; // array[tx, index, redeemscript]
     let splitTx;    
     for (var i = 0; i < refTxs.length; i++) {
